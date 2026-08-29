@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:8
+    ports: ["27017:27017"]
+    volumes: ["college-mongo:/data/db"]
+  chroma:
+    image: chromadb/chroma:0.5.23
+    ports: ["8000:8000"]
+    volumes: ["college-chroma:/chroma/chroma"]
+volumes:
+  college-mongo:
+  college-chroma:

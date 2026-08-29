@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import User from '../models/User.js';
+import { login, register } from '../services/authService.js';
+import { requireAuth } from '../middleware/auth.js';
+const router = Router();
+router.post('/register', async (req, res) => { try { res.status(201).json(await register(req.body)); } catch (error) { res.status(400).json({ error: error.message }); } });
+router.post('/login', async (req, res) => { try { res.json(await login(req.body)); } catch (error) { res.status(401).json({ error: error.message }); } });
+router.get('/me', requireAuth, (req, res) => res.json({ user: req.user }));
+router.post('/logout', requireAuth, (_req, res) => res.json({ success: true }));
+export default router;

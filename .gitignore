@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.env
+.env.local
+server/uploads/
+server/.data/
+client/.env.local
+npm-debug.log*

@@ -1,0 +1,2 @@
+import { create } from 'zustand';
+export const useAuth = create((set) => ({ user: null, token: null, hydrate: () => { if (typeof window !== 'undefined') set({ token: localStorage.getItem('college-token'), user: JSON.parse(localStorage.getItem('college-user') || 'null') }); }, setSession: (data) => { localStorage.setItem('college-token', data.token); localStorage.setItem('college-user', JSON.stringify(data.user)); set(data); }, logout: () => { localStorage.clear(); set({ user: null, token: null }); } }));
